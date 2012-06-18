@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>mockup of photoBox </title>
+    <title>prototype of photoBox </title>
     <link href="../stylesheets/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
@@ -76,6 +76,15 @@
 
           //var viewerHeight = $('body').height() - (20*2) - $(".pb-preview").height();
           //var viewerWidth = viewerHeight * (4/3);
+          var delta = 10;
+          var bodyHeight = $('body').height() - delta;
+          var bodyWidth = $('body').width() - delta;
+          $('.photoBox').css({
+            width: bodyWidth,
+            height: bodyHeight,
+            marginLeft: -(bodyWidth/2),
+            marginTop: -(bodyHeight/2)
+          });
           var viewerWidth = $('body').width() - $('.pb-desc').width() - (20*2) - 20;
 
           var viewerHeight = $('body').height() - (20*2) - $(".pb-preview").height();
@@ -84,8 +93,7 @@
           $(".pb-layer").width(viewerWidth);
 
 
-          var listWidth = $('body').width() - (35*2);
-          console.log(listWidth);
+          var listWidth = $('body').width() - (40*2);
           $(".pb-list-wrapper").width(listWidth);
 
         }, 200);
