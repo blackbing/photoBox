@@ -84,21 +84,19 @@ html, body {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
-  opacity: 0.9;
   -webkit-box-shadow: #333333 0px 0px 15px;
   -moz-box-shadow: #333333 0px 0px 15px;
   box-shadow: #333333 0px 0px 15px;
 }
 
-/* line 23, ../sass/style.scss */
+/* line 22, ../sass/style.scss */
 .photoBox .pb-viewer {
   position: absolute;
   height: 740px;
   width: 100%;
 }
 
-/* line 29, ../sass/style.scss */
+/* line 28, ../sass/style.scss */
 .pb-viewer .pb-layer {
   margin: 20px;
   position: absolute;
@@ -106,23 +104,25 @@ html, body {
   height: 100%;
 }
 
-/* line 36, ../sass/style.scss */
+/* line 35, ../sass/style.scss */
 .pb-viewer > .pb-layer > .pb-main-image {
   width: 100%;
-  height: 100%;
+  height: 90%;
   background-position: center center;
   background-size: cover;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-box-reflect: below 1px -webkit-linear-gradient(transparent, transparent 90%, rgba(0, 0, 0, 0.6));
+  box-reflect: below 1px -webkit-linear-gradient(transparent, transparent 90%, rgba(0, 0, 0, 0.6));
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
   -webkit-box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
   box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
 }
 
-/* line 45, ../sass/style.scss */
+/* line 46, ../sass/style.scss */
 .pb-viewer > .pb-desc {
   right: 0px;
   margin: 40px 20px 20px 20px;
@@ -131,13 +131,13 @@ html, body {
   position: absolute;
   overflow: scroll;
 }
-/* line 52, ../sass/style.scss */
+/* line 53, ../sass/style.scss */
 .pb-viewer > .pb-desc .pb-title {
   color: #CCC;
   font-size: 24px;
 }
 
-/* line 57, ../sass/style.scss */
+/* line 58, ../sass/style.scss */
 .photoBox > .pb-close {
   z-index: 1;
   font-weight: bold;
@@ -150,17 +150,17 @@ html, body {
   right: 15px;
   top: 15px;
 }
-/* line 68, ../sass/style.scss */
+/* line 69, ../sass/style.scss */
 .photoBox > .pb-close a {
   text-decoration: none;
   color: #FFF;
 }
-/* line 72, ../sass/style.scss */
+/* line 73, ../sass/style.scss */
 .photoBox > .pb-close a:hover {
   font-size: 16px;
 }
 
-/* line 77, ../sass/style.scss */
+/* line 78, ../sass/style.scss */
 .photoBox > .pb-preview {
   position: absolute;
   background-color: #000;
@@ -171,14 +171,14 @@ html, body {
   bottom: 0px;
 }
 
-/* line 85, ../sass/style.scss */
+/* line 86, ../sass/style.scss */
 .pb-spliter {
   border-top: dotted 2px #FFF;
   height: 4px;
   margin: 0px 25px;
 }
 
-/* line 90, ../sass/style.scss */
+/* line 91, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-list-wrapper {
   width: 1210px;
   height: 100%;
@@ -187,12 +187,12 @@ html, body {
   margin-left: 20px;
 }
 
-/* line 97, ../sass/style.scss */
+/* line 98, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list {
   width: 2000px;
 }
 
-/* line 100, ../sass/style.scss */
+/* line 101, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list > li {
   width: 150px;
   height: 120px;
@@ -200,21 +200,21 @@ html, body {
   float: left;
   background-size: cover;
 }
-/* line 106, ../sass/style.scss */
+/* line 107, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list > li a {
   display: block;
   width: 100%;
   height: 100%;
   text-indent: -9999px;
 }
-/* line 112, ../sass/style.scss */
+/* line 113, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list > li a:hover {
   -webkit-box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
   box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
 }
 
-/* line 117, ../sass/style.scss */
+/* line 118, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-left-handler {
   width: 0;
   height: 0;
@@ -227,7 +227,7 @@ html, body {
   margin-top: -10px;
   cursor: pointer;
 }
-/* line 128, ../sass/style.scss */
+/* line 129, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-left-handler a {
   margin-top: -12px;
   display: block;
@@ -236,7 +236,7 @@ html, body {
   text-indent: -9999px;
 }
 
-/* line 136, ../sass/style.scss */
+/* line 137, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-right-handler {
   width: 0;
   height: 0;
@@ -250,7 +250,7 @@ html, body {
   margin-top: -10px;
   cursor: pointer;
 }
-/* line 148, ../sass/style.scss */
+/* line 149, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-right-handler a {
   margin-top: -12px;
   display: block;
