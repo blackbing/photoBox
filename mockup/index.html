@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>mockup of photoBox </title>
+    <link href="../stylesheets/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    <div class="photoBox">
+      <div class="pb-close"><a href="#">╳</a></div>
+      <div class="pb-viewer">
+        <div class="pb-layer" >
+          <div class="pb-main-image" style="background-image:url(../images/269-2.jpg)"></div>
+        </div>
+        <div class="pb-desc">
+          <div class="pb-title">this is desc</div>
+          <div class="pb-comments">
+            <div class="fb-comments" data-href="http://example.com" data-num-posts="8" data-width="290" data-colorscheme="dark"></div>
+          </div>
+        </div>
+      </div>
+      <div class="pb-preview">
+        <div class="pb-spliter"></div>
+        <div class="pb-left-handler"><a href="#">previus</a></div>
+        <div class="pb-right-handler"><a href="#">next</a></div>
+        <div class="pb-list-wrapper">
+          <ul class="pb-list">
+            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
+          </ul>
+        <div>
+      </div>
+    </div>
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+
+    <script>
+    var require = {"baseUrl":'../javascript'}
+    </script>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1&appId=249435295153567";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <script data-main="main" src="http://requirejs.org/docs/release/1.0.7/minified/require.js"></script>
+    <script>
+      $(document).ready(function(){
+        var relayout = _.debounce(function(event){
+
+
+
+          //var viewerHeight = $('body').height() - (20*2) - $(".pb-preview").height();
+          //var viewerWidth = viewerHeight * (4/3);
+          var viewerWidth = $('body').width() - $('.pb-desc').width() - (20*2) - 20;
+
+          var viewerHeight = $('body').height() - (20*2) - $(".pb-preview").height();
+
+          $('.pb-viewer').height(viewerHeight);
+          $(".pb-layer").width(viewerWidth);
+
+
+          var listWidth = $('body').width() - (35*2);
+          console.log(listWidth);
+          $(".pb-list-wrapper").width(listWidth);
+
+        }, 200);
+        $(window).resize(relayout);
+        relayout();
+      });
+    </script>
+  </body>
+</html>
+
