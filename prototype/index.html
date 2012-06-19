@@ -26,6 +26,7 @@
     BACKGROUND<br>
     BACKGROUND<br>
     BACKGROUND<br>
+    <a href="#" id="show" onclick="$('.photoBox').trigger('open');">photoBox</a>
     <div class="photoBox">
       <div class="pb-close"><a href="#">╳</a></div>
       <div class="pb-viewer">
@@ -48,6 +49,9 @@
         <div class="pb-list-wrapper">
           <ul class="pb-list">
             <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.47.27.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-06-01%2011.52.14-2.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-06-01%2011.52.19.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-06-01%2011.52.21.jpg)"><a href="#">title</a></li>
             <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.08.jpg)"><a href="#">title</a></li>
             <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.15.jpg)"><a href="#">title</a></li>
             <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.33.jpg)"><a href="#">title</a></li>
@@ -72,6 +76,7 @@
 
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
     <script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
     <script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
 
@@ -90,11 +95,6 @@
     <script>
       $(document).ready(function(){
         var relayout = _.debounce(function(event){
-
-
-
-          //var viewerHeight = $('body').height() - (20*2) - $(".pb-preview").height();
-          //var viewerWidth = viewerHeight * (4/3);
           var delta = 10;
           var bodyHeight = $('body').height() - delta;
           var bodyWidth = $('body').width() - delta;
@@ -116,20 +116,28 @@
           var maxWidth = viewerWidth;
           $('.pb-main-image img').css({
             maxWidth: viewerWidth-delta,
-            maxHeight: viewerHeight-delta
+            maxHeight: viewerHeight-20
           }).trigger('load');
 
 
-          var listWidth = $('body').width() - (40*2);
+          var listWidth = $('body').width() - (50*2);
           $(".pb-list-wrapper").width(listWidth);
 
+          var $list = $('.photoBox .pb-list li')
+          //4 is margin
+          $('.photoBox .pb-list').width($list.length * ($list.width()+4*2))
+
         }, 200);
+
+
         $(window).resize(relayout);
         relayout();
 
 
+        //FIXME: backbone events
         $('.photoBox').on('click', '.pb-list li', function(){
-          console.log('click');
+          $('.photoBox .pb-list>li>a').removeClass('active');
+          $(this).find('a').addClass('active');
           var bkImgReg = /url\((.+)\)/;
           var bkImg = bkImgReg.exec($(this).css('background-image'));
           if(bkImg){
@@ -137,6 +145,75 @@
           }
 
         });
+        $('.photoBox').on('click', '.pb-left-handler', function(){
+          var $list = $('.photoBox .pb-list');
+          var list_left = parseInt($list.css('left'), 10);
+          var min = 0;
+          var remain = Math.abs(list_left - min);
+          if(remain <= 0){
+            return;
+          }else{
+            var left = Math.min(400, remain);
+            $('.photoBox .pb-list').animate({
+              left: '+='+left
+            }, 200);
+          }
+        });
+        $('.photoBox').on('click', '.pb-right-handler', function(){
+          var $list = $('.photoBox .pb-list');
+          var list_left = parseInt($list.css('left'), 10);
+          var min = -($('.photoBox .pb-list').width() - $('.pb-list-wrapper').width());
+          var remain = Math.abs(list_left - min);
+          if(remain <= 0){
+            return;
+          }else{
+            var left = Math.min(400, remain);
+            $('.photoBox .pb-list').animate({
+              left: '-='+left
+            }, 200);
+          }
+        });
+        $('.photoBox').bind('close', function(){
+          $('.photoBox>.pb-preview').hide();
+          $('.photoBox>.pb-viewer').hide();
+          //$('.photoBox').animate({height:0, marginTop:-$(this).height()/2}, 200);
+          $('.photoBox').animate({height:3, marginTop:'+='+$('body').height()/2}, 200)
+          .queue(function(){
+            $(this).dequeue();
+          }).animate({width: 0, marginLeft: '+='+$('body').width()/2},300);
+        });
+        $('.photoBox').on('click', '.pb-close', function(){
+          $('.photoBox').trigger('close');
+        });
+        $('.photoBox').bind('open', function(){
+          var h = $('body').height() -10;
+          var w = $('body').width() -10;
+          $('.photoBox').animate({width: w, marginLeft: '-'+w/2},300)
+          .queue(function(){$(this).dequeue();})
+          .animate({height:h, marginTop:'-'+h/2}, 200)
+          .queue(function(){
+            $('.photoBox>.pb-preview').show();
+            $('.photoBox>.pb-viewer').show();
+            $(this).dequeue();
+          });
+
+        });
+        $('.photoBox .pb-list').draggable({
+          axis: "x",
+          drag: function(event, ui){
+            var left = ui.position.left;
+            //FIXME: improvement
+            var min = -($('.photoBox .pb-list').width() - $('.pb-list-wrapper').width());
+            var max = 0;
+
+            if( (left-max)*(left-min)>0  ){
+              return false;
+            }
+
+          }
+        });
+
+
       });
     </script>
   </body>
