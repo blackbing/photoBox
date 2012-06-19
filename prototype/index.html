@@ -32,7 +32,7 @@
       <div class="pb-viewer">
         <div class="pb-layer" >
           <div class="pb-main-image">
-            <img src="http://dl.dropbox.com/u/751847/Warhol/PhotoStories/5UDVirbQ/2012-06-01%2011.52.42.jpg" onload="var w=this.width;var h=this.height;$(this).parent().css({width:w, height:h, marginLeft:-w/2, marginTop:-h/2, top:'50%', left:'50%'})">
+            <img src="http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.47.27.jpg" onload="var w=this.width;var h=this.height;$(this).parent().css({width:w, height:h, marginLeft:-w/2, marginTop:-h/2, top:'50%', left:'50%'})">
           </div>
         </div>
         <div class="pb-desc">
@@ -49,9 +49,6 @@
         <div class="pb-list-wrapper">
           <ul class="pb-list">
             <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.47.27.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-06-01%2011.52.14-2.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-06-01%2011.52.19.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-06-01%2011.52.21.jpg)"><a href="#">title</a></li>
             <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.08.jpg)"><a href="#">title</a></li>
             <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.15.jpg)"><a href="#">title</a></li>
             <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.33.jpg)"><a href="#">title</a></li>
@@ -77,6 +74,7 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/furf/jquery-ui-touch-punch/master/jquery.ui.touch-punch.min.js"></script>
     <script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
     <script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
 
@@ -95,6 +93,9 @@
     <script>
       $(document).ready(function(){
         var relayout = _.debounce(function(event){
+          if($('.photoBox').is(':hidden')){
+            return;
+          }
           var delta = 10;
           var bodyHeight = $('body').height() - delta;
           var bodyWidth = $('body').width() - delta;
@@ -106,7 +107,8 @@
             marginLeft: -(bodyWidth/2),
             marginTop: -(bodyHeight/2)
           });
-          var viewerWidth = $('body').width() - $('.pb-desc').width() - (20*2) - 30;
+          var descWidth = $('.pb-desc').is(':hidden')? 0: $('.pb-desc').width();
+          var viewerWidth = $('body').width() - descWidth - (20*2) - 30;
 
           var viewerHeight = $('body').height() - (20*2) - $(".pb-preview").height();
 
@@ -141,7 +143,11 @@
           var bkImgReg = /url\((.+)\)/;
           var bkImg = bkImgReg.exec($(this).css('background-image'));
           if(bkImg){
-            $('.pb-main-image img').attr('src', bkImg[1]);
+            var img = new Image();
+            img.onload = function(){
+              $('.pb-main-image img').attr('src', this.src);
+            }
+            img.src = bkImg[1];
           }
 
         });
@@ -176,11 +182,13 @@
         $('.photoBox').bind('close', function(){
           $('.photoBox>.pb-preview').hide();
           $('.photoBox>.pb-viewer').hide();
-          //$('.photoBox').animate({height:0, marginTop:-$(this).height()/2}, 200);
           $('.photoBox').animate({height:3, marginTop:'+='+$('body').height()/2}, 200)
           .queue(function(){
             $(this).dequeue();
-          }).animate({width: 0, marginLeft: '+='+$('body').width()/2},300);
+          }).animate({width: 0, marginLeft: '+='+$('body').width()/2},300)
+          .queue(function(){
+            $(this).hide().dequeue();
+          });
         });
         $('.photoBox').on('click', '.pb-close', function(){
           $('.photoBox').trigger('close');
@@ -188,12 +196,13 @@
         $('.photoBox').bind('open', function(){
           var h = $('body').height() -10;
           var w = $('body').width() -10;
-          $('.photoBox').animate({width: w, marginLeft: '-'+w/2},300)
+          $('.photoBox').show().animate({width: w, marginLeft: '-'+w/2},300)
           .queue(function(){$(this).dequeue();})
           .animate({height:h, marginTop:'-'+h/2}, 200)
           .queue(function(){
             $('.photoBox>.pb-preview').show();
             $('.photoBox>.pb-viewer').show();
+            $(window).trigger('resize');
             $(this).dequeue();
           });
 
