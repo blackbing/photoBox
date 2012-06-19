@@ -4,6 +4,14 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
     <title>prototype of photoBox </title>
+    <style>
+      html, body{
+        height: 100%;
+        font-size: 80px;
+        text-align: center;
+      }
+
+    </style>
     <link href="../stylesheets/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
@@ -22,7 +30,9 @@
       <div class="pb-close"><a href="#">╳</a></div>
       <div class="pb-viewer">
         <div class="pb-layer" >
-          <div class="pb-main-image" style="background-image:url(../images/269-2.jpg)"></div>
+          <div class="pb-main-image">
+            <img src="http://dl.dropbox.com/u/751847/Warhol/PhotoStories/5UDVirbQ/2012-06-01%2011.52.42.jpg" onload="var w=this.width;var h=this.height;$(this).parent().css({width:w, height:h, marginLeft:-w/2, marginTop:-h/2, top:'50%', left:'50%'})">
+          </div>
         </div>
         <div class="pb-desc">
           <div class="pb-title">this is desc</div>
@@ -37,16 +47,24 @@
         <div class="pb-right-handler"><a href="#">next</a></div>
         <div class="pb-list-wrapper">
           <ul class="pb-list">
-            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(../images/269-2.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.47.27.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.08.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.15.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.33.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2010.21.56.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2011.38.40.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2011.41.21.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2012.05.12.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2012.05.22.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.47.27.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.08.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.15.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.33.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2010.21.56.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2011.38.40.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2011.41.21.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2012.05.12.jpg)"><a href="#">title</a></li>
+            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2012.05.22.jpg)"><a href="#">title</a></li>
           </ul>
         <div>
       </div>
@@ -81,17 +99,25 @@
           var bodyHeight = $('body').height() - delta;
           var bodyWidth = $('body').width() - delta;
           $('.photoBox').css({
+            top: '50%',
+            left: '50%',
             width: bodyWidth,
             height: bodyHeight,
             marginLeft: -(bodyWidth/2),
             marginTop: -(bodyHeight/2)
           });
-          var viewerWidth = $('body').width() - $('.pb-desc').width() - (20*2) - 20;
+          var viewerWidth = $('body').width() - $('.pb-desc').width() - (20*2) - 30;
 
           var viewerHeight = $('body').height() - (20*2) - $(".pb-preview").height();
 
           $('.pb-viewer').height(viewerHeight);
           $(".pb-layer").width(viewerWidth);
+
+          var maxWidth = viewerWidth;
+          $('.pb-main-image img').css({
+            maxWidth: viewerWidth-delta,
+            maxHeight: viewerHeight-delta
+          }).trigger('load');
 
 
           var listWidth = $('body').width() - (40*2);
@@ -100,6 +126,17 @@
         }, 200);
         $(window).resize(relayout);
         relayout();
+
+
+        $('.photoBox').on('click', '.pb-list li', function(){
+          console.log('click');
+          var bkImgReg = /url\((.+)\)/;
+          var bkImg = bkImgReg.exec($(this).css('background-image'));
+          if(bkImg){
+            $('.pb-main-image img').attr('src', bkImg[1]);
+          }
+
+        });
       });
     </script>
   </body>

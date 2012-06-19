@@ -63,19 +63,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 5, ../sass/style.scss */
-html, body {
-  height: 100%;
-  font-size: 80px;
-  text-align: center;
-}
-
 /*start*/
-/* line 12, ../sass/style.scss */
+/* line 7, ../sass/style.scss */
 .photoBox {
-  top: 50%;
-  left: 50%;
-  position: absolute;
+  position: fixed;
   background-color: #000000;
   width: 100%;
   height: 100%;
@@ -89,23 +80,26 @@ html, body {
   box-shadow: #333333 0px 0px 15px;
 }
 
-/* line 22, ../sass/style.scss */
+/* line 15, ../sass/style.scss */
 .photoBox .pb-viewer {
   position: absolute;
   height: 740px;
   width: 100%;
 }
 
-/* line 28, ../sass/style.scss */
+/* line 21, ../sass/style.scss */
 .pb-viewer .pb-layer {
   margin: 20px;
   position: absolute;
   width: 940px;
   height: 100%;
+  line-height: 100%;
 }
 
-/* line 35, ../sass/style.scss */
+/* line 32, ../sass/style.scss */
 .pb-viewer > .pb-layer > .pb-main-image {
+  position: absolute;
+  display: block;
   width: 100%;
   height: 90%;
   background-position: center center;
@@ -122,7 +116,7 @@ html, body {
   box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
 }
 
-/* line 46, ../sass/style.scss */
+/* line 45, ../sass/style.scss */
 .pb-viewer > .pb-desc {
   right: 0px;
   margin: 40px 20px 20px 20px;
@@ -131,13 +125,13 @@ html, body {
   position: absolute;
   overflow: scroll;
 }
-/* line 53, ../sass/style.scss */
+/* line 52, ../sass/style.scss */
 .pb-viewer > .pb-desc .pb-title {
   color: #CCC;
   font-size: 24px;
 }
 
-/* line 58, ../sass/style.scss */
+/* line 57, ../sass/style.scss */
 .photoBox > .pb-close {
   z-index: 1;
   font-weight: bold;
@@ -150,17 +144,17 @@ html, body {
   right: 15px;
   top: 15px;
 }
-/* line 69, ../sass/style.scss */
+/* line 68, ../sass/style.scss */
 .photoBox > .pb-close a {
   text-decoration: none;
   color: #FFF;
 }
-/* line 73, ../sass/style.scss */
+/* line 72, ../sass/style.scss */
 .photoBox > .pb-close a:hover {
   font-size: 16px;
 }
 
-/* line 78, ../sass/style.scss */
+/* line 77, ../sass/style.scss */
 .photoBox > .pb-preview {
   position: absolute;
   background-color: #000;
@@ -171,14 +165,14 @@ html, body {
   bottom: 0px;
 }
 
-/* line 86, ../sass/style.scss */
+/* line 85, ../sass/style.scss */
 .pb-spliter {
   border-top: dotted 2px #FFF;
   height: 4px;
   margin: 0px 25px;
 }
 
-/* line 91, ../sass/style.scss */
+/* line 90, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-list-wrapper {
   width: 1210px;
   height: 100%;
@@ -187,9 +181,10 @@ html, body {
   margin-left: 20px;
 }
 
-/* line 98, ../sass/style.scss */
+/* line 97, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list {
-  width: 2000px;
+  white-space: nowrap;
+  display: inline-block;
 }
 
 /* line 101, ../sass/style.scss */
