@@ -2,16 +2,51 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>initial project</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <title>photoBox </title>
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <style>
+      html, body{
+        height: 100%;
+        text-align: center;
+      }
+
+    </style>
   </head>
   <body>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    BACKGROUND<br>
+    <a href="#" id="show" onclick="$('.photoBox').trigger('open');">photoBox</a>
+
+
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/furf/jquery-ui-touch-punch/master/jquery.ui.touch-punch.min.js"></script>
     <script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
     <script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+    <script type="text/javascript" src="http://cloud.github.com/downloads/wycats/handlebars.js/handlebars-1.0.0.beta.6.js"></script>
 
     <script>
     var require = {"baseUrl":'javascript'}
     </script>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1&appId=249435295153567";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     <script data-main="main" src="http://requirejs.org/docs/release/1.0.7/minified/require.js"></script>
   </body>
 </html>
