@@ -5,7 +5,6 @@
 
 /*start*/
 .photoBox {
-  display:none;
   position: fixed;
   background-color: #000000;
   top: 50%;
@@ -17,6 +16,9 @@
   overflow: hidden;
   @include border-radius(3px);
   @include box-shadow(#333 0px 0px 15px);
+}
+.photoBox.hidden{
+  visibility: hidden;
 }
 .photoBox .pb-viewer{
   position: absolute;
@@ -54,7 +56,7 @@
   position: absolute;
   overflow: scroll;
   /*TODO: desc can be hide*/
-  /*display:none;*/
+  display:none;
   .pb-title{
     color: #CCC;
     font-size: 24px;

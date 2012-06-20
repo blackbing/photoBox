@@ -26,8 +26,8 @@
     BACKGROUND<br>
     BACKGROUND<br>
     BACKGROUND<br>
-    <a href="#" id="show" onclick="$('.photoBox').trigger('open');">photoBox</a>
-    <div class="photoBox">
+    <a href="#" id="show" onclick="$('#photoBox').trigger('open');">photoBox</a>
+    <div id="photoBox" class="photoBox hidden">
       <div class="pb-close"><a href="#">╳</a></div>
       <div class="pb-viewer">
         <div class="pb-layer" >
@@ -38,7 +38,7 @@
         <div class="pb-desc">
           <div class="pb-title">this is desc</div>
           <div class="pb-comments">
-            <div class="fb-comments" data-href="http://example.com" data-num-posts="8" data-width="290" data-colorscheme="dark"></div>
+            this is comments
           </div>
         </div>
       </div>
@@ -79,21 +79,18 @@
     <script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
 
     <script>
-    var require = {"baseUrl":'../javascript'}
-    </script>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1&appId=249435295153567";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-    <script data-main="main" src="http://requirejs.org/docs/release/1.0.7/minified/require.js"></script>
-    <script>
       $(document).ready(function(){
         var relayout = _.debounce(function(event){
-          if($('.photoBox').is(':hidden')){
+
+          if($('#photoBox').css('visibility') === 'hidden'){
+            if($('#photoBoxShadow').css('visibility') === 'hidden'){
+              $('#photoBoxShadow').css({
+                width:0,
+                height:3,
+                marginLeft:5,
+                marginTop:5
+              });
+            }
             return;
           }
           var delta = 10;
@@ -125,9 +122,9 @@
           var listWidth = $('body').width() - (50*2);
           $(".pb-list-wrapper").width(listWidth);
 
-          var $list = $('.photoBox .pb-list li')
+          var $list = $('#photoBox .pb-list li')
           //4 is margin
-          $('.photoBox .pb-list').width($list.length * ($list.width()+4*2))
+          $('#photoBox .pb-list').width($list.length * ($list.width()+4*2))
 
         }, 200);
 
@@ -137,8 +134,8 @@
 
 
         //FIXME: backbone events
-        $('.photoBox').on('click', '.pb-list li', function(){
-          $('.photoBox .pb-list>li>a').removeClass('active');
+        $('#photoBox').on('click', '.pb-list li', function(){
+          $('#photoBox .pb-list>li>a').removeClass('active');
           $(this).find('a').addClass('active');
           var bkImgReg = /url\((.+)\)/;
           var bkImg = bkImgReg.exec($(this).css('background-image'));
@@ -151,8 +148,8 @@
           }
 
         });
-        $('.photoBox').on('click', '.pb-left-handler', function(){
-          var $list = $('.photoBox .pb-list');
+        $('#photoBox').on('click', '.pb-left-handler', function(){
+          var $list = $('#photoBox .pb-list');
           var list_left = parseInt($list.css('left'), 10);
           var min = 0;
           var remain = Math.abs(list_left - min);
@@ -160,59 +157,71 @@
             return;
           }else{
             var left = Math.min(400, remain);
-            $('.photoBox .pb-list').animate({
+            $('#photoBox .pb-list').animate({
               left: '+='+left
             }, 200);
           }
         });
-        $('.photoBox').on('click', '.pb-right-handler', function(){
-          var $list = $('.photoBox .pb-list');
+        $('#photoBox').on('click', '.pb-right-handler', function(){
+          var $list = $('#photoBox .pb-list');
           var list_left = parseInt($list.css('left'), 10);
-          var min = -($('.photoBox .pb-list').width() - $('.pb-list-wrapper').width());
+          var min = -($('#photoBox .pb-list').width() - $('.pb-list-wrapper').width());
           var remain = Math.abs(list_left - min);
           if(remain <= 0){
             return;
           }else{
             var left = Math.min(400, remain);
-            $('.photoBox .pb-list').animate({
+            $('#photoBox .pb-list').animate({
               left: '-='+left
             }, 200);
           }
         });
-        $('.photoBox').bind('close', function(){
-          $('.photoBox>.pb-preview').hide();
-          $('.photoBox>.pb-viewer').hide();
-          $('.photoBox').animate({height:3, marginTop:'+='+$('body').height()/2}, 200)
+        $('#photoBox').bind('close', function(){
+
+          $('#photoBox').addClass('hidden');
+          $('#photoBoxShadow').removeClass('hidden');
+          $('#photoBoxShadow').animate({height:3, marginTop:'+='+$('body').height()/2}, 200)
           .queue(function(){
             $(this).dequeue();
           }).animate({width: 0, marginLeft: '+='+$('body').width()/2},300)
           .queue(function(){
-            $(this).hide().dequeue();
+            $(this).addClass('hidden').dequeue();
           });
         });
-        $('.photoBox').on('click', '.pb-close', function(){
-          $('.photoBox').trigger('close');
+        $('#photoBox').on('click', '.pb-close', function(){
+          $('#photoBox').trigger('close');
         });
-        $('.photoBox').bind('open', function(){
+        $('#photoBox').bind('open', function(){
+          $('#photoBoxShadow').removeClass('hidden');
+
+
           var h = $('body').height() -10;
           var w = $('body').width() -10;
-          $('.photoBox').show().animate({width: w, marginLeft: '-'+w/2},300)
+          $('#photoBoxShadow').removeClass('hidden').animate({width: w, marginLeft: '-'+w/2},300)
           .queue(function(){$(this).dequeue();})
           .animate({height:h, marginTop:'-'+h/2}, 200)
           .queue(function(){
-            $('.photoBox>.pb-preview').show();
-            $('.photoBox>.pb-viewer').show();
             $(window).trigger('resize');
+            $('#photoBox').removeClass('hidden');
+            //for the initial appearring, hide the shadow after element is randered
+            _.delay(function(){
+              $('#photoBoxShadow').addClass('hidden');
+            }, 180);
             $(this).dequeue();
           });
 
         });
-        $('.photoBox .pb-list').draggable({
+
+        //create a shadow
+        $('#photoBox').after('<div class="photoBox hidden" id="photoBoxShadow"/>');
+
+
+        $('#photoBox .pb-list').draggable({
           axis: "x",
           drag: function(event, ui){
             var left = ui.position.left;
             //FIXME: improvement
-            var min = -($('.photoBox .pb-list').width() - $('.pb-list-wrapper').width());
+            var min = -($('#photoBox .pb-list').width() - $('.pb-list-wrapper').width());
             var max = 0;
 
             if( (left-max)*(left-min)>0  ){

@@ -66,7 +66,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /*start*/
 /* line 7, ../sass/style.scss */
 .photoBox {
-  display: none;
   position: fixed;
   background-color: #000000;
   top: 50%;
@@ -86,14 +85,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   box-shadow: #333333 0px 0px 15px;
 }
 
-/* line 21, ../sass/style.scss */
+/* line 20, ../sass/style.scss */
+.photoBox.hidden {
+  visibility: hidden;
+}
+
+/* line 23, ../sass/style.scss */
 .photoBox .pb-viewer {
   position: absolute;
   height: 740px;
   width: 100%;
 }
 
-/* line 27, ../sass/style.scss */
+/* line 29, ../sass/style.scss */
 .pb-viewer .pb-layer {
   margin: 20px;
   position: absolute;
@@ -102,7 +106,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   line-height: 100%;
 }
 
-/* line 35, ../sass/style.scss */
+/* line 37, ../sass/style.scss */
 .pb-viewer > .pb-layer > .pb-main-image {
   position: absolute;
   display: block;
@@ -122,7 +126,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
 }
 
-/* line 49, ../sass/style.scss */
+/* line 51, ../sass/style.scss */
 .pb-viewer > .pb-desc {
   right: 0px;
   margin: 40px 20px 20px 20px;
@@ -131,15 +135,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   position: absolute;
   overflow: scroll;
   /*TODO: desc can be hide*/
-  /*display:none;*/
+  display: none;
 }
-/* line 58, ../sass/style.scss */
+/* line 60, ../sass/style.scss */
 .pb-viewer > .pb-desc .pb-title {
   color: #CCC;
   font-size: 24px;
 }
 
-/* line 63, ../sass/style.scss */
+/* line 65, ../sass/style.scss */
 .photoBox > .pb-close {
   z-index: 1;
   font-weight: bold;
@@ -152,17 +156,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   right: 15px;
   top: 15px;
 }
-/* line 74, ../sass/style.scss */
+/* line 76, ../sass/style.scss */
 .photoBox > .pb-close a {
   text-decoration: none;
   color: #FFF;
 }
-/* line 78, ../sass/style.scss */
+/* line 80, ../sass/style.scss */
 .photoBox > .pb-close a:hover {
   font-size: 16px;
 }
 
-/* line 83, ../sass/style.scss */
+/* line 85, ../sass/style.scss */
 .photoBox > .pb-preview {
   position: absolute;
   background-color: #000;
@@ -173,14 +177,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   bottom: 0px;
 }
 
-/* line 91, ../sass/style.scss */
+/* line 93, ../sass/style.scss */
 .pb-spliter {
   border-top: dotted 2px #FFF;
   height: 4px;
   margin: 0px 25px;
 }
 
-/* line 96, ../sass/style.scss */
+/* line 98, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-list-wrapper {
   width: 1210px;
   height: 100%;
@@ -189,14 +193,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin-left: 30px;
 }
 
-/* line 103, ../sass/style.scss */
+/* line 105, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list {
   white-space: nowrap;
   display: inline-block;
   left: 0px;
 }
 
-/* line 108, ../sass/style.scss */
+/* line 110, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list > li {
   width: 150px;
   height: 120px;
@@ -204,21 +208,21 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   float: left;
   background-size: cover;
 }
-/* line 114, ../sass/style.scss */
+/* line 116, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list > li a {
   display: block;
   width: 100%;
   height: 100%;
   text-indent: -9999px;
 }
-/* line 120, ../sass/style.scss */
+/* line 122, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list > li a.active, .photoBox > .pb-preview .pb-list > li a:hover {
   -webkit-box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
   box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
 }
 
-/* line 125, ../sass/style.scss */
+/* line 127, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-left-handler {
   width: 0;
   height: 0;
@@ -231,7 +235,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin-top: -10px;
   cursor: pointer;
 }
-/* line 136, ../sass/style.scss */
+/* line 138, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-left-handler a {
   margin-top: -12px;
   display: block;
@@ -240,7 +244,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   text-indent: -9999px;
 }
 
-/* line 144, ../sass/style.scss */
+/* line 146, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-right-handler {
   width: 0;
   height: 0;
@@ -254,7 +258,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin-top: -10px;
   cursor: pointer;
 }
-/* line 156, ../sass/style.scss */
+/* line 158, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-right-handler a {
   margin-top: -12px;
   display: block;
