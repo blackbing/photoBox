@@ -9,9 +9,7 @@
         if ($("#photoBoxShadow").css("visibility") === "hidden") {
           $("#photoBoxShadow").css({
             width: 0,
-            height: 3,
-            marginLeft: 5,
-            marginTop: 5
+            height: 3
           });
         }
         return;
@@ -20,12 +18,8 @@
       bodyHeight = $("body").height() - delta;
       bodyWidth = $("body").width() - delta;
       $(".photoBox").css({
-        top: "50%",
-        left: "50%",
         width: bodyWidth,
-        height: bodyHeight,
-        marginLeft: -(bodyWidth / 2),
-        marginTop: -(bodyHeight / 2)
+        height: bodyHeight
       });
       descWidth = ($(".pb-desc").is(":hidden") ? 0 : $(".pb-desc").width());
       viewerWidth = $("body").width() - descWidth - (20 * 2) - 30;
@@ -81,13 +75,11 @@
         h = $("body").height() - 10;
         w = $("body").width() - 10;
         return $("#photoBoxShadow").removeClass("hidden").animate({
-          width: w,
-          marginLeft: "-" + w / 2
+          width: w
         }, 300).queue(function() {
           return $(this).dequeue();
         }).animate({
-          height: h,
-          marginTop: "-" + h / 2
+          height: h
         }, 200).queue(function() {
           $(window).trigger("resize");
           $("#photoBox").removeClass("hidden");
@@ -101,13 +93,11 @@
         $("#photoBox").addClass("hidden");
         $("#photoBoxShadow").removeClass("hidden");
         return $("#photoBoxShadow").animate({
-          height: 3,
-          marginTop: "+=" + $("body").height() / 2
+          height: 3
         }, 200).queue(function() {
           return $(this).dequeue();
         }).animate({
-          width: 0,
-          marginLeft: "+=" + $("body").width() / 2
+          width: 0
         }, 300).queue(function() {
           return $(this).addClass("hidden").dequeue();
         });

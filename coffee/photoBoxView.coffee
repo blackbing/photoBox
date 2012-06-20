@@ -9,19 +9,19 @@ define [
         $("#photoBoxShadow").css
           width: 0
           height: 3
-          marginLeft: 5
-          marginTop: 5
+          #marginLeft: 5
+          #marginTop: 5
       return
     delta = 10
     bodyHeight = $("body").height() - delta
     bodyWidth = $("body").width() - delta
     $(".photoBox").css
-      top: "50%"
-      left: "50%"
+      #top: "50%"
+      #left: "50%"
       width: bodyWidth
       height: bodyHeight
-      marginLeft: -(bodyWidth / 2)
-      marginTop: -(bodyHeight / 2)
+      #marginLeft: -(bodyWidth / 2)
+      #marginTop: -(bodyHeight / 2)
 
     descWidth = (if $(".pb-desc").is(":hidden") then 0 else $(".pb-desc").width())
     viewerWidth = $("body").width() - descWidth - (20 * 2) - 30
@@ -78,12 +78,12 @@ define [
       w = $("body").width() - 10
       $("#photoBoxShadow").removeClass("hidden").animate(
         width: w
-        marginLeft: "-" + w / 2
+        #marginLeft: "-" + w / 2
       , 300).queue(->
         $(this).dequeue()
       ).animate(
         height: h
-        marginTop: "-" + h / 2
+        #marginTop: "-" + h / 2
       , 200).queue ->
         $(window).trigger "resize"
         $("#photoBox").removeClass "hidden"
@@ -97,12 +97,12 @@ define [
       $("#photoBoxShadow").removeClass "hidden"
       $("#photoBoxShadow").animate(
         height: 3
-        marginTop: "+=" + $("body").height() / 2
+        #marginTop: "+=" + $("body").height() / 2
       , 200).queue(->
         $(this).dequeue()
       ).animate(
         width: 0
-        marginLeft: "+=" + $("body").width() / 2
+        #marginLeft: "+=" + $("body").width() / 2
       , 300).queue ->
         $(this).addClass("hidden").dequeue()
 
