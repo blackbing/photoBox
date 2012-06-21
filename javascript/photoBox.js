@@ -7,7 +7,7 @@
 
       function PhotoBox() {
         this.photoBoxView = new PhotoBoxView();
-        console.log(this.photoBoxView);
+        console.log(_selfPrefix, this.photoBoxView);
         $('body').append(this.photoBoxView.$el);
       }
 

@@ -5,23 +5,8 @@ define [
   _selfPrefix = module.id
   relayout = _.debounce((event) ->
     if $("#photoBox").css("visibility") is "hidden"
-      if $("#photoBoxShadow").css("visibility") is "hidden"
-        $("#photoBoxShadow").css
-          width: 0
-          height: 3
-          #marginLeft: 5
-          #marginTop: 5
       return
     delta = 10
-    bodyHeight = $("body").height() - delta
-    bodyWidth = $("body").width() - delta
-    $(".photoBox").css
-      #top: "50%"
-      #left: "50%"
-      width: bodyWidth
-      height: bodyHeight
-      #marginLeft: -(bodyWidth / 2)
-      #marginTop: -(bodyHeight / 2)
 
     descWidth = (if $(".pb-desc").is(":hidden") then 0 else $(".pb-desc").width())
     viewerWidth = $("body").width() - descWidth - (20 * 2) - 30
@@ -73,38 +58,29 @@ define [
         , 200
 
     open: (event)->
-      $("#photoBoxShadow").removeClass "hidden"
-      h = $("body").height() - 10
-      w = $("body").width() - 10
-      $("#photoBoxShadow").removeClass("hidden").animate(
-        width: w
-        #marginLeft: "-" + w / 2
-      , 300).queue(->
-        $(this).dequeue()
-      ).animate(
-        height: h
-        #marginTop: "-" + h / 2
-      , 200).queue ->
-        $(window).trigger "resize"
-        $("#photoBox").removeClass "hidden"
-        _.delay (->
-          $("#photoBoxShadow").addClass "hidden"
-        ), 180
-        $(this).dequeue()
+      @$el.find("#photoBoxShadow")
+      .attr('class', 'photoBox open')
+      .one('webkitTransitionEnd', (event)=>
+        _.delay(=>
+          @$el.find('#photoBox').removeClass('hidden')
+          relayout()
+          @$el.find("#photoBoxShadow").addClass('hidden')
+        , 200)
+      )
+
 
     close: (event)->
-      $("#photoBox").addClass "hidden"
-      $("#photoBoxShadow").removeClass "hidden"
-      $("#photoBoxShadow").animate(
-        height: 3
-        #marginTop: "+=" + $("body").height() / 2
-      , 200).queue(->
-        $(this).dequeue()
-      ).animate(
-        width: 0
-        #marginLeft: "+=" + $("body").width() / 2
-      , 300).queue ->
-        $(this).addClass("hidden").dequeue()
+      @$el.find("#photoBox").addClass "hidden"
+
+      @$el.find("#photoBoxShadow")
+      .removeClass('hidden open')
+      .addClass('close')
+      .one('webkitTransitionEnd', (event)=>
+        _.delay(=>
+          @$el.find('#photoBox').addClass('hidden')
+          @$el.find("#photoBoxShadow").addClass('hidden')
+        , 200)
+      )
 
     selectPhoto: (event)->
       $target = $(event.currentTarget)
@@ -144,15 +120,6 @@ define [
 
       $(window).resize relayout
       relayout()
-
-
-
-
-
-#$("#photoBox").on "click", ".pb-list li", ->
-
-
-
 
 
   )

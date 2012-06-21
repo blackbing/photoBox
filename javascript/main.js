@@ -3,7 +3,7 @@
   require(['module', 'photoBox'], function(module, PhotoBox) {
     var photoBox;
     photoBox = new PhotoBox();
-    return $('#show').click(function() {
+    return $('#show').text('show photoBox').click(function() {
       return photoBox.open();
     });
   });

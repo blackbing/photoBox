@@ -4,23 +4,9 @@
     var PhotoBoxView, relayout, _selfPrefix;
     _selfPrefix = module.id;
     relayout = _.debounce(function(event) {
-      var $list, bodyHeight, bodyWidth, delta, descWidth, listWidth, maxWidth, viewerHeight, viewerWidth;
-      if ($("#photoBox").css("visibility") === "hidden") {
-        if ($("#photoBoxShadow").css("visibility") === "hidden") {
-          $("#photoBoxShadow").css({
-            width: 0,
-            height: 3
-          });
-        }
-        return;
-      }
+      var $list, delta, descWidth, listWidth, maxWidth, viewerHeight, viewerWidth;
+      if ($("#photoBox").css("visibility") === "hidden") return;
       delta = 10;
-      bodyHeight = $("body").height() - delta;
-      bodyWidth = $("body").width() - delta;
-      $(".photoBox").css({
-        width: bodyWidth,
-        height: bodyHeight
-      });
       descWidth = ($(".pb-desc").is(":hidden") ? 0 : $(".pb-desc").width());
       viewerWidth = $("body").width() - descWidth - (20 * 2) - 30;
       viewerHeight = $("body").height() - (20 * 2) - $(".pb-preview").height();
@@ -70,36 +56,23 @@
         }
       },
       open: function(event) {
-        var h, w;
-        $("#photoBoxShadow").removeClass("hidden");
-        h = $("body").height() - 10;
-        w = $("body").width() - 10;
-        return $("#photoBoxShadow").removeClass("hidden").animate({
-          width: w
-        }, 300).queue(function() {
-          return $(this).dequeue();
-        }).animate({
-          height: h
-        }, 200).queue(function() {
-          $(window).trigger("resize");
-          $("#photoBox").removeClass("hidden");
-          _.delay((function() {
-            return $("#photoBoxShadow").addClass("hidden");
-          }), 180);
-          return $(this).dequeue();
+        var _this = this;
+        return this.$el.find("#photoBoxShadow").attr('class', 'photoBox open').one('webkitTransitionEnd', function(event) {
+          return _.delay(function() {
+            _this.$el.find('#photoBox').removeClass('hidden');
+            relayout();
+            return _this.$el.find("#photoBoxShadow").addClass('hidden');
+          }, 200);
         });
       },
       close: function(event) {
-        $("#photoBox").addClass("hidden");
-        $("#photoBoxShadow").removeClass("hidden");
-        return $("#photoBoxShadow").animate({
-          height: 3
-        }, 200).queue(function() {
-          return $(this).dequeue();
-        }).animate({
-          width: 0
-        }, 300).queue(function() {
-          return $(this).addClass("hidden").dequeue();
+        var _this = this;
+        this.$el.find("#photoBox").addClass("hidden");
+        return this.$el.find("#photoBoxShadow").removeClass('hidden open').addClass('close').one('webkitTransitionEnd', function(event) {
+          return _.delay(function() {
+            _this.$el.find('#photoBox').addClass('hidden');
+            return _this.$el.find("#photoBoxShadow").addClass('hidden');
+          }, 200);
         });
       },
       selectPhoto: function(event) {

@@ -7,7 +7,7 @@ define [
   class PhotoBox
     constructor:()->
       @photoBoxView = new PhotoBoxView()
-      console.log @photoBoxView
+      console.log _selfPrefix, @photoBoxView
       $('body').append(@photoBoxView.$el)
 
     open: ()->

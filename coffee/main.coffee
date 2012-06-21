@@ -5,7 +5,9 @@ require [
 
   photoBox = new PhotoBox()
 
-  $('#show').click(->
+
+  $('#show').text('show photoBox')
+  .click(->
     photoBox.open()
   )
 
