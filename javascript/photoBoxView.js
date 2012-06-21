@@ -76,7 +76,8 @@
         });
       },
       selectPhoto: function(event) {
-        var $target, bkImg, bkImgReg, img;
+        var $target, bkImg, bkImgReg, img,
+          _this = this;
         $target = $(event.currentTarget);
         this.$(".pb-list>li>a").removeClass("active");
         $target.find("a").addClass("active");
@@ -85,7 +86,7 @@
         if (bkImg) {
           img = new Image();
           img.onload = function() {
-            return this.$(".pb-main-image img").attr("src", this.src);
+            return _this.$(".pb-main-image img").attr("src", img.src);
           };
           return img.src = bkImg[1];
         }

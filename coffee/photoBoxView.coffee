@@ -91,8 +91,8 @@ define [
       bkImg = bkImgReg.exec($target.css("background-image"))
       if bkImg
         img = new Image()
-        img.onload = ->
-          @$(".pb-main-image img").attr "src", @src
+        img.onload = =>
+          @$(".pb-main-image img").attr "src", img.src
 
         img.src = bkImg[1]
 
