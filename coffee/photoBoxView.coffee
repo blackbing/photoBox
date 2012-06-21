@@ -98,14 +98,11 @@ define [
 
 
     render: ->
-      #$('body').append(@el)
       template = Handlebars.compile(photoBoxTpl)
       data = {}
-      #<div id="photoBox" class="photoBox hidden">
       @$el.append(template(data))
 
       $photoBox = @$el
-      #$photoBox.after "<div class=\"photoBox hidden\" id=\"photoBoxShadow\"/>"
       @$(".pb-list").draggable
         axis: "x"
         drag: (event, ui) =>
@@ -123,6 +120,13 @@ define [
           @relayout()
         , 200)
       )
+      .on 'keydown', (event)=>
+
+        switch event.which
+          when 27
+            @close()
+
+
       @relayout()
 
 

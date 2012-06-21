@@ -113,7 +113,12 @@
         this.render();
         $(window).resize(_.debounce(function() {
           return _this.relayout();
-        }, 200));
+        }, 200)).on('keydown', function(event) {
+          switch (event.which) {
+            case 27:
+              return _this.close();
+          }
+        });
         return this.relayout();
       }
     });
