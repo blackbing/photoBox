@@ -60,6 +60,8 @@
   background-size: cover;
   -webkit-box-reflect: below 1px -webkit-linear-gradient(transparent,transparent 90%,rgba(0,0,0,.6));
   box-reflect: below 1px -webkit-linear-gradient(transparent,transparent 90%,rgba(0,0,0,.6));
+  min-width: 128px;
+  min-height: 128px;
   @include border-radius(3px);
   @include box-shadow(rgba(white, 0.9) 0 0 25px, rgba(gray, 0.8) 0 0 3px 1px inset);
   @include transition(width 0.3s, height 0.3s, margin-left 0.3s, margin-top 0.3s);

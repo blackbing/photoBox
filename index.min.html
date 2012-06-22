@@ -41,11 +41,14 @@
     <script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
     <script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
     <script type="text/javascript" src="http://cloud.github.com/downloads/wycats/handlebars.js/handlebars-1.0.0.beta.6.js"></script>
-
+    <script src="http://requirejs.org/docs/release/2.0.2/minified/require.js"></script>
+    <script type="text/javascript" src="javascript/jquery.photoBox.min.js"></script>
     <script>
-    var require = {"baseUrl":'javascript'}
+      $(document).ready(function(){
+        $('.imageRow a').photoBox();
+      });
     </script>
-    <script data-main="main" src="http://requirejs.org/docs/release/2.0.2/minified/require.js"></script>
+
   </body>
 </html>
 

@@ -1,7 +1,7 @@
 {
   "baseUrl":'javascript',
-  name: "main",
-  out: 'javascript/main-built.js',
+  name: "jquery.photoBox",
+  out: 'javascript/jquery.photoBox.min.js',
   paths: {
   }
 }
