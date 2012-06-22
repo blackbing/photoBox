@@ -2,8 +2,8 @@
       <div class="pb-close"><a href="#">╳</a></div>
       <div class="pb-viewer">
         <div class="pb-layer" >
-          <div class="pb-main-image">
-            <img src="http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.47.27.jpg" onload="var w=this.width;var h=this.height;$(this).parent().css({width:w, height:h, marginLeft:-w/2, marginTop:-h/2, top:'50%', left:'50%'})">
+          <div class="pb-main-image loading">
+            <img src="" style="display:none" onload="var w=this.width;var h=this.height;$(this).parent().css({width:w, height:h, marginLeft:-w/2, marginTop:-h/2, top:'50%', left:'50%'})">
           </div>
         </div>
         <div class="pb-desc">
@@ -19,24 +19,9 @@
         <div class="pb-right-handler"><a href="#">next</a></div>
         <div class="pb-list-wrapper">
           <ul class="pb-list">
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.47.27.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.08.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.15.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.33.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2010.21.56.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2011.38.40.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2011.41.21.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2012.05.12.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2012.05.22.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.47.27.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.08.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.15.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2009.50.33.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2010.21.56.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2011.38.40.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2011.41.21.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2012.05.12.jpg)"><a href="#">title</a></li>
-            <li style="background-image:url(http://dl.dropbox.com/u/751847/Warhol/PhotoStories/6RjTF9jz/2012-04-02%2012.05.22.jpg)"><a href="#">title</a></li>
+            {{#each list}}
+            <li style="background-image:url({{this.thumb}})"><a href="#">title</a></li>
+            {{/each}}
           </ul>
         </div>
       </div>

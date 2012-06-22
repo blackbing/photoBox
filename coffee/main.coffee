@@ -1,15 +1,8 @@
 require [
   'module'
-  'photoBox'
+  'jquery.photoBox'
 ], (module, PhotoBox)->
 
-  photoBox = new PhotoBox()
 
-
-  $('#show').text('show photoBox')
-  .click(->
-    photoBox.open()
-  )
-
-
+  $('.imageRow a').photoBox()
 

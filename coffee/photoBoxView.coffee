@@ -57,7 +57,8 @@ define [
           left: "+=" + left
         , 200
 
-    open: (event)->
+    open: (idx)->
+
       @$("#photoBoxShadow")
       .attr('class', 'photoBox open')
       .one('webkitTransitionEnd', (event)=>
@@ -67,6 +68,9 @@ define [
           @$("#photoBoxShadow").addClass('hidden')
         , 200)
       )
+
+      if idx?
+        @$('.pb-list>li').eq(idx).trigger('click')
 
 
     close: (event)->
@@ -85,22 +89,32 @@ define [
     selectPhoto: (event)->
       $target = $(event.currentTarget)
 
-      @$(".pb-list>li>a").removeClass("active")
-      $target.find("a").addClass("active")
-      bkImgReg = /url\((.+)\)/
-      bkImg = bkImgReg.exec($target.css("background-image"))
-      if bkImg
-        img = new Image()
-        img.onload = =>
-          @$(".pb-main-image img").attr "src", img.src
+      idx = @$('.pb-list>li').index($target)
+      originalImg = @data[idx]['original']
 
-        img.src = bkImg[1]
+
+      @$(".pb-list>li>a").removeClass("active")
+      @$(".pb-main-image").addClass('loading')
+      @$(".pb-main-image img").fadeOut()
+      $target.find("a").addClass("active")
+      #bkImgReg = /url\((.+)\)/
+      #bkImg = bkImgReg.exec($target.css("background-image"))
+      img = new Image()
+      img.onload = =>
+        @$(".pb-main-image").removeClass('loading')
+        @$(".pb-main-image img").attr("src", img.src)
+        .fadeIn()
+
+
+      img.src = originalImg
 
 
     render: ->
+
       template = Handlebars.compile(photoBoxTpl)
-      data = {}
-      @$el.append(template(data))
+      tplData =
+        list: @data
+      @$el.append(template(tplData))
 
       $photoBox = @$el
       @$(".pb-list").draggable
@@ -111,7 +125,8 @@ define [
           max = 0
           false  if (left - max) * (left - min) > 0
 
-    initialize: ->
+    initialize: (@data)->
+      console.log 'initialize', @data
       @render()
 
 

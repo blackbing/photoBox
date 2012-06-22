@@ -5,14 +5,15 @@
     _selfPrefix = module.id;
     PhotoBox = (function() {
 
-      function PhotoBox() {
-        this.photoBoxView = new PhotoBoxView();
+      function PhotoBox(data) {
+        this.data = data;
+        this.photoBoxView = new PhotoBoxView(this.data);
         console.log(_selfPrefix, this.photoBoxView);
         $('body').append(this.photoBoxView.$el);
       }
 
-      PhotoBox.prototype.open = function() {
-        return this.photoBoxView.open();
+      PhotoBox.prototype.open = function(index) {
+        return this.photoBoxView.open(index);
       };
 
       return PhotoBox;

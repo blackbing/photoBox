@@ -55,15 +55,16 @@
           }, 200);
         }
       },
-      open: function(event) {
+      open: function(idx) {
         var _this = this;
-        return this.$("#photoBoxShadow").attr('class', 'photoBox open').one('webkitTransitionEnd', function(event) {
+        this.$("#photoBoxShadow").attr('class', 'photoBox open').one('webkitTransitionEnd', function(event) {
           return _.delay(function() {
             _this.$('#photoBox').removeClass('hidden');
             _this.relayout();
             return _this.$("#photoBoxShadow").addClass('hidden');
           }, 200);
         });
+        if (idx != null) return this.$('.pb-list>li').eq(idx).trigger('click');
       },
       close: function(event) {
         var _this = this;
@@ -76,27 +77,30 @@
         });
       },
       selectPhoto: function(event) {
-        var $target, bkImg, bkImgReg, img,
+        var $target, idx, img, originalImg,
           _this = this;
         $target = $(event.currentTarget);
+        idx = this.$('.pb-list>li').index($target);
+        originalImg = this.data[idx]['original'];
         this.$(".pb-list>li>a").removeClass("active");
+        this.$(".pb-main-image").addClass('loading');
+        this.$(".pb-main-image img").fadeOut();
         $target.find("a").addClass("active");
-        bkImgReg = /url\((.+)\)/;
-        bkImg = bkImgReg.exec($target.css("background-image"));
-        if (bkImg) {
-          img = new Image();
-          img.onload = function() {
-            return _this.$(".pb-main-image img").attr("src", img.src);
-          };
-          return img.src = bkImg[1];
-        }
+        img = new Image();
+        img.onload = function() {
+          _this.$(".pb-main-image").removeClass('loading');
+          return _this.$(".pb-main-image img").attr("src", img.src).fadeIn();
+        };
+        return img.src = originalImg;
       },
       render: function() {
-        var $photoBox, data, template,
+        var $photoBox, template, tplData,
           _this = this;
         template = Handlebars.compile(photoBoxTpl);
-        data = {};
-        this.$el.append(template(data));
+        tplData = {
+          list: this.data
+        };
+        this.$el.append(template(tplData));
         $photoBox = this.$el;
         return this.$(".pb-list").draggable({
           axis: "x",
@@ -109,8 +113,10 @@
           }
         });
       },
-      initialize: function() {
+      initialize: function(data) {
         var _this = this;
+        this.data = data;
+        console.log('initialize', this.data);
         this.render();
         $(window).resize(_.debounce(function() {
           return _this.relayout();

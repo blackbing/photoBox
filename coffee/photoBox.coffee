@@ -5,13 +5,13 @@ define [
   _selfPrefix = module.id
 
   class PhotoBox
-    constructor:()->
-      @photoBoxView = new PhotoBoxView()
+    constructor:(@data)->
+      @photoBoxView = new PhotoBoxView(@data)
       console.log _selfPrefix, @photoBoxView
       $('body').append(@photoBoxView.$el)
 
-    open: ()->
-      @photoBoxView.open()
+    open: (index)->
+      @photoBoxView.open(index)
 
 
 

@@ -1,11 +1,7 @@
 (function() {
 
-  require(['module', 'photoBox'], function(module, PhotoBox) {
-    var photoBox;
-    photoBox = new PhotoBox();
-    return $('#show').text('show photoBox').click(function() {
-      return photoBox.open();
-    });
+  require(['module', 'jquery.photoBox'], function(module, PhotoBox) {
+    return $('.imageRow a').photoBox();
   });
 
 }).call(this);
