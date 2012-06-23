@@ -147,11 +147,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   box-reflect: below 1px -webkit-linear-gradient(transparent, transparent 90%, rgba(0, 0, 0, 0.6));
   min-width: 128px;
   min-height: 128px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
   -webkit-box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
   box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
@@ -161,7 +156,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -o-transition: width 0.3s, height 0.3s, margin-left 0.3s, margin-top 0.3s;
   transition: width 0.3s, height 0.3s, margin-left 0.3s, margin-top 0.3s;
 }
-/* line 69, ../sass/style.scss */
+/* line 68, ../sass/style.scss */
+.pb-viewer > .pb-layer > .pb-main-image img {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+/* line 73, ../sass/style.scss */
 .pb-viewer > .pb-layer > .pb-main-image.loading {
   background-image: url(../images/image-loading.gif);
   background-repeat: no-repeat;
@@ -169,7 +172,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-size: auto;
 }
 
-/* line 78, ../sass/style.scss */
+/* line 82, ../sass/style.scss */
 .pb-viewer > .pb-desc {
   right: 0px;
   margin: 40px 20px 20px 20px;
@@ -180,13 +183,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   /*TODO: desc can be hide*/
   display: none;
 }
-/* line 87, ../sass/style.scss */
+/* line 91, ../sass/style.scss */
 .pb-viewer > .pb-desc .pb-title {
   color: #CCC;
   font-size: 24px;
 }
 
-/* line 92, ../sass/style.scss */
+/* line 96, ../sass/style.scss */
 .photoBox > .pb-close {
   z-index: 1;
   font-weight: bold;
@@ -199,17 +202,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   right: 15px;
   top: 15px;
 }
-/* line 103, ../sass/style.scss */
+/* line 107, ../sass/style.scss */
 .photoBox > .pb-close a {
   text-decoration: none;
   color: #FFF;
 }
-/* line 107, ../sass/style.scss */
+/* line 111, ../sass/style.scss */
 .photoBox > .pb-close a:hover {
   font-size: 16px;
 }
 
-/* line 112, ../sass/style.scss */
+/* line 116, ../sass/style.scss */
 .photoBox > .pb-preview {
   position: absolute;
   background-color: #000;
@@ -220,14 +223,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   bottom: 0px;
 }
 
-/* line 120, ../sass/style.scss */
+/* line 124, ../sass/style.scss */
 .pb-spliter {
   border-top: dotted 2px #FFF;
   height: 4px;
   margin: 0px 25px;
 }
 
-/* line 125, ../sass/style.scss */
+/* line 129, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-list-wrapper {
   width: 1210px;
   height: 100%;
@@ -236,14 +239,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin-left: 30px;
 }
 
-/* line 132, ../sass/style.scss */
+/* line 136, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list {
   white-space: nowrap;
   display: inline-block;
   left: 0px;
 }
 
-/* line 137, ../sass/style.scss */
+/* line 141, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list > li {
   width: 150px;
   height: 120px;
@@ -251,28 +254,28 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   float: left;
   background-size: cover;
 }
-/* line 143, ../sass/style.scss */
+/* line 147, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list > li.loading {
   background-image: url(../images/image-loading.gif);
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto;
 }
-/* line 149, ../sass/style.scss */
+/* line 153, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list > li a {
   display: block;
   width: 100%;
   height: 100%;
   text-indent: -9999px;
 }
-/* line 155, ../sass/style.scss */
+/* line 159, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list > li a.active, .photoBox > .pb-preview .pb-list > li a:hover {
   -webkit-box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
   box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
 }
 
-/* line 160, ../sass/style.scss */
+/* line 164, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-left-handler {
   width: 0;
   height: 0;
@@ -285,7 +288,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin-top: -10px;
   cursor: pointer;
 }
-/* line 171, ../sass/style.scss */
+/* line 175, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-left-handler a {
   margin-top: -12px;
   display: block;
@@ -294,7 +297,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   text-indent: -9999px;
 }
 
-/* line 179, ../sass/style.scss */
+/* line 183, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-right-handler {
   width: 0;
   height: 0;
@@ -308,7 +311,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin-top: -10px;
   cursor: pointer;
 }
-/* line 191, ../sass/style.scss */
+/* line 195, ../sass/style.scss */
 .photoBox > .pb-preview > .pb-right-handler a {
   margin-top: -12px;
   display: block;

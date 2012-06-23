@@ -12,7 +12,8 @@ define [
 
       descWidth = (if @$(".pb-desc").is(":hidden") then 0 else @$(".pb-desc").width())
       viewerWidth = $("body").width() - descWidth - (20 * 2) - 30
-      viewerHeight = $("body").height() - (20 * 2) - @$(".pb-preview").height()
+      previewHeight = if @$('.pb-preview').is(':visible') then @$(".pb-preview").height() else 0
+      viewerHeight = $("body").height() - (20 * 2) - previewHeight
       @$(".pb-viewer").height viewerHeight
       @$(".pb-layer").width viewerWidth
       maxWidth = viewerWidth
@@ -30,6 +31,16 @@ define [
       'click .pb-close': 'close'
       "click .pb-left-handler": 'swipeLeft'
       "click .pb-right-handler": 'swipeRight'
+
+    hidePreview: ->
+      @$('.pb-preview').slideUp(=>
+        @relayout()
+      )
+
+    showPreview: ->
+      @$('.pb-preview').slideDown(=>
+        @relayout()
+      )
 
     prev: ()->
       #$current = @$(".pb-list>li>a.active")
@@ -148,6 +159,7 @@ define [
       )
       .on 'keydown', (event)=>
 
+        console.log(event.which)
         switch event.which
           when 27
             @close()
@@ -155,6 +167,10 @@ define [
             @prev()
           when 39
             @next()
+          when 38
+            @showPreview()
+          when 40
+            @hidePreview()
 
 
 

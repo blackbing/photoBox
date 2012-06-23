@@ -5,12 +5,13 @@
     _selfPrefix = module.id;
     PhotoBoxView = Backbone.View.extend({
       relayout: function() {
-        var $list, delta, descWidth, listWidth, maxWidth, viewerHeight, viewerWidth;
+        var $list, delta, descWidth, listWidth, maxWidth, previewHeight, viewerHeight, viewerWidth;
         if (this.$("#photoBox").css("visibility") === "hidden") return;
         delta = 10;
         descWidth = (this.$(".pb-desc").is(":hidden") ? 0 : this.$(".pb-desc").width());
         viewerWidth = $("body").width() - descWidth - (20 * 2) - 30;
-        viewerHeight = $("body").height() - (20 * 2) - this.$(".pb-preview").height();
+        previewHeight = this.$('.pb-preview').is(':visible') ? this.$(".pb-preview").height() : 0;
+        viewerHeight = $("body").height() - (20 * 2) - previewHeight;
         this.$(".pb-viewer").height(viewerHeight);
         this.$(".pb-layer").width(viewerWidth);
         maxWidth = viewerWidth;
@@ -28,6 +29,18 @@
         'click .pb-close': 'close',
         "click .pb-left-handler": 'swipeLeft',
         "click .pb-right-handler": 'swipeRight'
+      },
+      hidePreview: function() {
+        var _this = this;
+        return this.$('.pb-preview').slideUp(function() {
+          return _this.relayout();
+        });
+      },
+      showPreview: function() {
+        var _this = this;
+        return this.$('.pb-preview').slideDown(function() {
+          return _this.relayout();
+        });
       },
       prev: function() {
         var prevLi;
@@ -131,6 +144,7 @@
         $(window).resize(_.debounce(function() {
           return _this.relayout();
         }, 200)).on('keydown', function(event) {
+          console.log(event.which);
           switch (event.which) {
             case 27:
               return _this.close();
@@ -138,6 +152,10 @@
               return _this.prev();
             case 39:
               return _this.next();
+            case 38:
+              return _this.showPreview();
+            case 40:
+              return _this.hidePreview();
           }
         });
         return this.relayout();
