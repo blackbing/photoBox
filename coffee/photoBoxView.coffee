@@ -28,10 +28,21 @@ define [
     events:
       'click .pb-list li': 'selectPhoto'
       'click .pb-close': 'close'
-      "click .pb-left-handler": 'previous'
-      "click .pb-right-handler": 'next'
+      "click .pb-left-handler": 'swipeLeft'
+      "click .pb-right-handler": 'swipeRight'
 
-    next: (event)->
+    prev: ()->
+      #$current = @$(".pb-list>li>a.active")
+      prevLi = @$(".pb-list>li>a.active").parent().prev()
+      prevLi.trigger('click')
+
+    next: ()->
+      #$current = @$(".pb-list>li>a.active")
+      nextLi = @$(".pb-list>li>a.active").parent().next()
+      nextLi.trigger('click')
+
+
+    swipeRight: (event)->
       $list = @$("#photoBox .pb-list")
       list_left = parseInt($list.css("left"), 10)
       min = -(@$("#photoBox .pb-list").width() - @$(".pb-list-wrapper").width())
@@ -44,7 +55,7 @@ define [
           left: "-=" + left
         , 200
 
-    previous: (event)->
+    swipeLeft: (event)->
       $list = @$("#photoBox .pb-list")
       list_left = parseInt($list.css("left"), 10)
       min = 0
@@ -140,6 +151,11 @@ define [
         switch event.which
           when 27
             @close()
+          when 37
+            @prev()
+          when 39
+            @next()
+
 
 
       @relayout()

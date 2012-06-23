@@ -26,10 +26,20 @@
       events: {
         'click .pb-list li': 'selectPhoto',
         'click .pb-close': 'close',
-        "click .pb-left-handler": 'previous',
-        "click .pb-right-handler": 'next'
+        "click .pb-left-handler": 'swipeLeft',
+        "click .pb-right-handler": 'swipeRight'
       },
-      next: function(event) {
+      prev: function() {
+        var prevLi;
+        prevLi = this.$(".pb-list>li>a.active").parent().prev();
+        return prevLi.trigger('click');
+      },
+      next: function() {
+        var nextLi;
+        nextLi = this.$(".pb-list>li>a.active").parent().next();
+        return nextLi.trigger('click');
+      },
+      swipeRight: function(event) {
         var $list, left, list_left, min, remain;
         $list = this.$("#photoBox .pb-list");
         list_left = parseInt($list.css("left"), 10);
@@ -42,7 +52,7 @@
           }, 200);
         }
       },
-      previous: function(event) {
+      swipeLeft: function(event) {
         var $list, left, list_left, min, remain;
         $list = this.$("#photoBox .pb-list");
         list_left = parseInt($list.css("left"), 10);
@@ -124,6 +134,10 @@
           switch (event.which) {
             case 27:
               return _this.close();
+            case 37:
+              return _this.prev();
+            case 39:
+              return _this.next();
           }
         });
         return this.relayout();

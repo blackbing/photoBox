@@ -1,4 +1,4 @@
-require [
+define [
   'module'
   'photoBox'
 ], (module, PhotoBox)->
