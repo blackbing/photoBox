@@ -139,12 +139,10 @@
       initialize: function(data) {
         var _this = this;
         this.data = data;
-        console.log('initialize', this.data);
         this.render();
         $(window).resize(_.debounce(function() {
           return _this.relayout();
         }, 200)).on('keydown', function(event) {
-          console.log(event.which);
           switch (event.which) {
             case 27:
               return _this.close();

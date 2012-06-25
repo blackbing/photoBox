@@ -148,7 +148,7 @@ define [
           false  if (left - max) * (left - min) > 0
 
     initialize: (@data)->
-      console.log 'initialize', @data
+      #console.log 'initialize', @data
       @render()
 
 
@@ -159,7 +159,7 @@ define [
       )
       .on 'keydown', (event)=>
 
-        console.log(event.which)
+        #console.log(event.which)
         switch event.which
           when 27
             @close()
