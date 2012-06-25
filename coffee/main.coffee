@@ -1,8 +1,13 @@
 require [
   'module'
   'jquery.photoBox'
-], (module, PhotoBox)->
+], (module)->
 
 
-  $('.imageRow a').photoBox()
+  $('.imageRow a').photoBox(
+    thumb : ->
+      return $(@).find('img').attr('src')
+    original: ->
+      return $(@).attr('href')
+  )
 
