@@ -45,7 +45,9 @@
     <script type="text/javascript" src="javascript/jquery.photoBox.min.js"></script>
     <script>
       $(document).ready(function(){
-        $('.imageRow a').photoBox();
+        require(['jquery.photoBox'], function(){
+          $('.imageRow a').photoBox();
+        });
       });
     </script>
 
