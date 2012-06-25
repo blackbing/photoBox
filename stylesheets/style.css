@@ -166,7 +166,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 /* line 73, ../sass/style.scss */
 .pb-viewer > .pb-layer > .pb-main-image.loading {
-  background-image: url(../images/image-loading.gif);
+  background-image: url(../images/photoBox/image-loading.gif);
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto;
@@ -256,7 +256,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 /* line 147, ../sass/style.scss */
 .photoBox > .pb-preview .pb-list > li.loading {
-  background-image: url(../images/image-loading.gif);
+  background-image: url(../images/photoBox/image-loading.gif);
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto;
