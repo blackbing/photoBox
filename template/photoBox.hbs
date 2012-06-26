@@ -3,7 +3,7 @@
       <div class="pb-viewer">
         <div class="pb-layer" >
           <div class="pb-main-image loading">
-            <img src="" style="display:none" onload="var w=this.width;var h=this.height;$(this).parent().css({width:w, height:h, marginLeft:-w/2, marginTop:-h/2, top:'50%', left:'50%'})">
+            <img src="" style="display:none" onload="var w=this.width;var h=this.height;$(this).stop(true, true).fadeIn().parent().css({width:w, height:h, marginLeft:-w/2, marginTop:-h/2, top:'50%', left:'50%'})">
           </div>
         </div>
         <div class="pb-desc">
@@ -15,8 +15,8 @@
       </div>
       <div class="pb-preview">
         <div class="pb-spliter"></div>
-        <div class="pb-left-handler"><a href="#">previus</a></div>
-        <div class="pb-right-handler"><a href="#">next</a></div>
+        <div class="pb-left-handler"><a href="#">previus</a><span class="pb-shadow"></span></div>
+        <div class="pb-right-handler"><a href="#">next</a><span class="pb-shadow"></span></div>
         <div class="pb-list-wrapper">
           <ul class="pb-list">
             {{#each list}}

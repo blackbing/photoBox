@@ -1,6 +1,6 @@
 define [
   'module'
-  'photoBox'
+  './photoBox'
 ], (module, PhotoBox)->
 
   $.fn.photoBox = (opts)->

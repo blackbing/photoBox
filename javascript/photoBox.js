@@ -1,6 +1,6 @@
 (function() {
 
-  define(['module', 'photoBoxView'], function(module, PhotoBoxView) {
+  define(['module', './photoBoxView'], function(module, PhotoBoxView) {
     var PhotoBox, _selfPrefix;
     _selfPrefix = module.id;
     PhotoBox = (function() {

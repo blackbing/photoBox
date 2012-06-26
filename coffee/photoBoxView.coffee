@@ -21,10 +21,36 @@ define [
         maxWidth: viewerWidth - delta
         maxHeight: viewerHeight - 20
       ).trigger "load"
-      listWidth = $("body").width() - (50 * 2)
+      listWidth = $("body").width() - (40 * 2)
       @$(".pb-list-wrapper").width listWidth
       $list = @$("#photoBox .pb-list li")
       @$("#photoBox .pb-list").width $list.length * ($list.width() + 4 * 2)
+
+      @showShadow()
+
+    showShadow: ->
+      listLeft = parseInt($('.pb-list').css('left') or 0, 10)
+      min = -(@$(".pb-list").width() - @$(".pb-list-wrapper").width())
+      limit = 100
+
+      if(listLeft > min)
+        remain = listLeft - min
+        opacity = 1
+        if(remain < limit)
+          opacity = remain/100
+        @$('.pb-right-handler').css('opacity', opacity)
+
+      max = 0
+      if( listLeft <= max)
+        remain = max - listLeft
+        opacity = 1
+        if(remain < limit)
+          opacity = remain/100
+        @$('.pb-left-handler').css('opacity', opacity)
+
+
+      return
+
 
     events:
       'click .pb-list li': 'selectPhoto'
@@ -81,6 +107,9 @@ define [
 
     open: (idx)->
 
+      @$("#photoBoxShadow").removeClass('hidden')
+      @$('#photoBoxShadow').offset().left # re-flow the page
+
       @$("#photoBoxShadow")
       .attr('class', 'photoBox open')
       .one('webkitTransitionEnd', (event)=>
@@ -91,22 +120,31 @@ define [
         , 200)
       )
 
+      #_.delay(=>
+
+      #, 10)
+
       if idx?
         @$('.pb-list>li').eq(idx).trigger('click')
+
+      return
 
 
     close: (event)->
       @$("#photoBox").addClass "hidden"
 
+      @$("#photoBoxShadow").removeClass('hidden')
+      @$('#photoBoxShadow').offset().left # re-flow the page
+
       @$("#photoBoxShadow")
-      .removeClass('hidden open')
-      .addClass('close')
+      .attr('class', 'photoBox close')
       .one('webkitTransitionEnd', (event)=>
         _.delay(=>
           @$('#photoBox').addClass('hidden')
           @$("#photoBoxShadow").addClass('hidden')
         , 200)
       )
+
 
     selectPhoto: (event)->
       $target = $(event.currentTarget)
@@ -116,27 +154,29 @@ define [
 
 
       @$(".pb-list>li>a").removeClass("active")
-      @$(".pb-main-image").addClass('loading')
+      #@$(".pb-main-image").addClass('loading')
       @$(".pb-main-image img").fadeOut()
       $target.find("a").addClass("active")
       #bkImgReg = /url\((.+)\)/
       #bkImg = bkImgReg.exec($target.css("background-image"))
+      ###
       img = new Image()
       img.onload = =>
-        @$(".pb-main-image").removeClass('loading')
-        @$(".pb-main-image img").attr("src", img.src)
+        #@$(".pb-main-image").removeClass('loading')
+        @$(".pb-main-image img").stop().attr("src", img.src)
         .fadeIn()
 
 
       img.src = originalImg
+      ###
+      @$(".pb-main-image img").attr('src', originalImg)
 
 
     render: ->
-
       template = Handlebars.compile(photoBoxTpl)
       tplData =
         list: @data
-      @$el.append(template(tplData))
+      @$el.addClass('photoBoxWrapper').append(template(tplData))
 
       $photoBox = @$el
       @$(".pb-list").draggable
@@ -145,7 +185,9 @@ define [
           left = ui.position.left
           min = -(@$(".pb-list").width() - @$(".pb-list-wrapper").width())
           max = 0
-          false  if (left - max) * (left - min) > 0
+          @showShadow()
+          if (left - max) * (left - min) >= 0
+            return false
 
     initialize: (@data)->
       #console.log 'initialize', @data

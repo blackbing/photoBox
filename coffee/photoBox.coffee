@@ -1,6 +1,6 @@
 define [
   'module'
-  'photoBoxView'
+  './photoBoxView'
 ], (module, PhotoBoxView)->
   _selfPrefix = module.id
 

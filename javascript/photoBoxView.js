@@ -19,10 +19,30 @@
           maxWidth: viewerWidth - delta,
           maxHeight: viewerHeight - 20
         }).trigger("load");
-        listWidth = $("body").width() - (50 * 2);
+        listWidth = $("body").width() - (40 * 2);
         this.$(".pb-list-wrapper").width(listWidth);
         $list = this.$("#photoBox .pb-list li");
-        return this.$("#photoBox .pb-list").width($list.length * ($list.width() + 4 * 2));
+        this.$("#photoBox .pb-list").width($list.length * ($list.width() + 4 * 2));
+        return this.showShadow();
+      },
+      showShadow: function() {
+        var limit, listLeft, max, min, opacity, remain;
+        listLeft = parseInt($('.pb-list').css('left') || 0, 10);
+        min = -(this.$(".pb-list").width() - this.$(".pb-list-wrapper").width());
+        limit = 100;
+        if (listLeft > min) {
+          remain = listLeft - min;
+          opacity = 1;
+          if (remain < limit) opacity = remain / 100;
+          this.$('.pb-right-handler').css('opacity', opacity);
+        }
+        max = 0;
+        if (listLeft <= max) {
+          remain = max - listLeft;
+          opacity = 1;
+          if (remain < limit) opacity = remain / 100;
+          this.$('.pb-left-handler').css('opacity', opacity);
+        }
       },
       events: {
         'click .pb-list li': 'selectPhoto',
@@ -80,6 +100,8 @@
       },
       open: function(idx) {
         var _this = this;
+        this.$("#photoBoxShadow").removeClass('hidden');
+        this.$('#photoBoxShadow').offset().left;
         this.$("#photoBoxShadow").attr('class', 'photoBox open').one('webkitTransitionEnd', function(event) {
           return _.delay(function() {
             _this.$('#photoBox').removeClass('hidden');
@@ -87,12 +109,14 @@
             return _this.$("#photoBoxShadow").addClass('hidden');
           }, 200);
         });
-        if (idx != null) return this.$('.pb-list>li').eq(idx).trigger('click');
+        if (idx != null) this.$('.pb-list>li').eq(idx).trigger('click');
       },
       close: function(event) {
         var _this = this;
         this.$("#photoBox").addClass("hidden");
-        return this.$("#photoBoxShadow").removeClass('hidden open').addClass('close').one('webkitTransitionEnd', function(event) {
+        this.$("#photoBoxShadow").removeClass('hidden');
+        this.$('#photoBoxShadow').offset().left;
+        return this.$("#photoBoxShadow").attr('class', 'photoBox close').one('webkitTransitionEnd', function(event) {
           return _.delay(function() {
             _this.$('#photoBox').addClass('hidden');
             return _this.$("#photoBoxShadow").addClass('hidden');
@@ -100,21 +124,24 @@
         });
       },
       selectPhoto: function(event) {
-        var $target, idx, img, originalImg,
-          _this = this;
+        var $target, idx, originalImg;
         $target = $(event.currentTarget);
         idx = this.$('.pb-list>li').index($target);
         originalImg = this.data[idx]['original'];
         this.$(".pb-list>li>a").removeClass("active");
-        this.$(".pb-main-image").addClass('loading');
         this.$(".pb-main-image img").fadeOut();
         $target.find("a").addClass("active");
-        img = new Image();
-        img.onload = function() {
-          _this.$(".pb-main-image").removeClass('loading');
-          return _this.$(".pb-main-image img").attr("src", img.src).fadeIn();
-        };
-        return img.src = originalImg;
+        /*
+              img = new Image()
+              img.onload = =>
+                #@$(".pb-main-image").removeClass('loading')
+                @$(".pb-main-image img").stop().attr("src", img.src)
+                .fadeIn()
+        
+        
+              img.src = originalImg
+        */
+        return this.$(".pb-main-image img").attr('src', originalImg);
       },
       render: function() {
         var $photoBox, template, tplData,
@@ -123,7 +150,7 @@
         tplData = {
           list: this.data
         };
-        this.$el.append(template(tplData));
+        this.$el.addClass('photoBoxWrapper').append(template(tplData));
         $photoBox = this.$el;
         return this.$(".pb-list").draggable({
           axis: "x",
@@ -132,7 +159,8 @@
             left = ui.position.left;
             min = -(_this.$(".pb-list").width() - _this.$(".pb-list-wrapper").width());
             max = 0;
-            if ((left - max) * (left - min) > 0) return false;
+            _this.showShadow();
+            if ((left - max) * (left - min) >= 0) return false;
           }
         });
       },

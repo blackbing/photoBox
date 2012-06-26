@@ -1,6 +1,6 @@
 (function() {
 
-  define(['module', 'photoBox'], function(module, PhotoBox) {
+  define(['module', './photoBox'], function(module, PhotoBox) {
     return $.fn.photoBox = function(opts) {
       var $el, data, photoBox;
       $el = this;

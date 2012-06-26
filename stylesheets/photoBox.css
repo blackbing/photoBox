@@ -64,7 +64,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /*start*/
-/* line 7, ../sass/photoBox.scss */
+/* line 8, ../sass/photoBox.scss */
 .photoBox {
   position: fixed;
   background-color: #000000;
@@ -72,18 +72,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   left: 0;
   right: 0;
   bottom: 0;
-  width: 99.3%;
-  height: 98%;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   margin: auto;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-box-shadow: #333333 0px 0px 15px;
-  -moz-box-shadow: #333333 0px 0px 15px;
-  box-shadow: #333333 0px 0px 15px;
+  z-index: 9999999;
 }
 
 /* line 21, ../sass/photoBox.scss */
@@ -115,8 +108,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -ms-transition: width 0.3s ease 0, height 0.2s ease 0.3s;
   -o-transition: width 0.3s ease 0, height 0.2s ease 0.3s;
   transition: width 0.3s ease 0, height 0.2s ease 0.3s;
-  width: 99.3%;
-  height: 98%;
+  width: 100%;
+  height: 100%;
 }
 
 /* line 40, ../sass/photoBox.scss */
@@ -150,11 +143,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -webkit-box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
   box-shadow: rgba(255, 255, 255, 0.9) 0 0 25px, rgba(128, 128, 128, 0.8) 0 0 3px 1px inset;
-  -webkit-transition: width 0.3s, height 0.3s, margin-left 0.3s, margin-top 0.3s;
-  -moz-transition: width 0.3s, height 0.3s, margin-left 0.3s, margin-top 0.3s;
-  -ms-transition: width 0.3s, height 0.3s, margin-left 0.3s, margin-top 0.3s;
-  -o-transition: width 0.3s, height 0.3s, margin-left 0.3s, margin-top 0.3s;
-  transition: width 0.3s, height 0.3s, margin-left 0.3s, margin-top 0.3s;
+  -webkit-transition: width 0.3s, height 0.3s, margin-top 0.3s;
+  -moz-transition: width 0.3s, height 0.3s, margin-top 0.3s;
+  -ms-transition: width 0.3s, height 0.3s, margin-top 0.3s;
+  -o-transition: width 0.3s, height 0.3s, margin-top 0.3s;
+  transition: width 0.3s, height 0.3s, margin-top 0.3s;
 }
 /* line 68, ../sass/photoBox.scss */
 .pb-viewer > .pb-layer > .pb-main-image img {
@@ -166,7 +159,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 /* line 73, ../sass/photoBox.scss */
 .pb-viewer > .pb-layer > .pb-main-image.loading {
-  background-image: url(../images/photoBox/image-loading.gif);
+  background-image: url("../images/photoBox/image-loading.gif");
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto;
@@ -256,7 +249,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 /* line 147, ../sass/photoBox.scss */
 .photoBox > .pb-preview .pb-list > li.loading {
-  background-image: url(../images/photoBox/image-loading.gif);
+  background-image: url("../images/photoBox/image-loading.gif");
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto;
@@ -290,14 +283,33 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 /* line 175, ../sass/photoBox.scss */
 .photoBox > .pb-preview > .pb-left-handler a {
-  margin-top: -12px;
+  position: absolute;
+  margin-top: -80px;
+  margin-left: -5px;
   display: block;
   width: 20px;
-  height: 20px;
+  height: 160px;
   text-indent: -9999px;
 }
+/* line 184, ../sass/photoBox.scss */
+.photoBox > .pb-preview > .pb-left-handler .pb-shadow {
+  background-color: white;
+  margin-left: 20px;
+  margin-top: -78px;
+  height: 158px;
+  position: absolute;
+  width: 30px;
+  z-index: 10;
+  background: -moz-linear-gradient(left, black 0%, rgba(0, 0, 0, 0.01) 99%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, black), color-stop(99%, rgba(0, 0, 0, 0.01)), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(left, black 0%, rgba(0, 0, 0, 0.01) 99%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(left, black 0%, rgba(0, 0, 0, 0.01) 99%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(left, black 0%, rgba(0, 0, 0, 0.01) 99%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(left, #000000 0%, rgba(0, 0, 0, 0.01) 99%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#00ffffff',GradientType=1 );
+}
 
-/* line 183, ../sass/photoBox.scss */
+/* line 203, ../sass/photoBox.scss */
 .photoBox > .pb-preview > .pb-right-handler {
   width: 0;
   height: 0;
@@ -311,11 +323,30 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin-top: -10px;
   cursor: pointer;
 }
-/* line 195, ../sass/photoBox.scss */
+/* line 215, ../sass/photoBox.scss */
 .photoBox > .pb-preview > .pb-right-handler a {
-  margin-top: -12px;
+  position: absolute;
+  margin-top: -80px;
+  margin-left: -5px;
   display: block;
   width: 20px;
-  height: 20px;
+  height: 160px;
   text-indent: -9999px;
+}
+/* line 224, ../sass/photoBox.scss */
+.photoBox > .pb-preview > .pb-right-handler .pb-shadow {
+  background-color: white;
+  right: 20px;
+  margin-top: -78px;
+  height: 158px;
+  position: absolute;
+  width: 30px;
+  z-index: 10;
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.02) 2%, black 99%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(2%, rgba(0, 0, 0, 0.02)), color-stop(99%, black));
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.02) 2%, black 99%);
+  background: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.02) 2%, black 99%);
+  background: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.02) 2%, black 99%);
+  background: linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.02) 2%, #000000 99%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#000000',GradientType=1 );
 }
